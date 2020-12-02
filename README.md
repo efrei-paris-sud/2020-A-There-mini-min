@@ -16,9 +16,6 @@ Video of the project :
 
 [![Video of the project](https://img.youtube.com/vi/OTfalurMwmk/0.jpg)](www.youtube.com/watch?v=OTfalurMwmk)
 
-Please don't forget to update the github repository information too. 
-![Change Description of github repository](assets/change_description.png?raw=true)
-
 # Lab Reports
 
 The lab reports are accessible from [this link](lab)
