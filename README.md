@@ -1,19 +1,20 @@
-# Team Name: Bla Bla
+# Team Name: cold+sleepy+my eyes hurt
 Members: 
 |![member1](assets/member1.webp?raw=true) |![member2](assets/member2.webp?raw=true)  |
 |--|--|
-|  [Member 1](https://github.com/username) <br> a short description of her responsiblity ...| [Member 2 ](https://github.com/username) <br> a short description of his responsiblity ... |
+|  [Camille MATHIEU](https://github.com/xSleyver) <br> Design & assembling | [Timothé CHAUVET](https://github.com/username) <br> Development & API |
 
 
 
-# Project Title: bla bla
- **Description**: bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
+# Project Title: Thereminimin
+ **Description**: Our project is about making a Theremin, an electrical music instrument that crosses all frequencies (like a violin). It uses a proximity sensor as it is controlled by distance.
+ 
  
 [Click here for more information about the project](project) 
 
-Example Video of the porject:
+Video of the project :
 
-[![Example Video of the porject](https://img.youtube.com/vi/ucZl6vQ_8Uo/0.jpg)](https://www.youtube.com/watch?v=ucZl6vQ_8Uo)
+[![Video of the project](https://img.youtube.com/vi/OTfalurMwmk/0.jpg)](www.youtube.com/watch?v=OTfalurMwmk)
 
 Please don't forget to update the github repository information too. 
 ![Change Description of github repository](assets/change_description.png?raw=true)
@@ -21,6 +22,3 @@ Please don't forget to update the github repository information too.
 # Lab Reports
 
 The lab reports are accessible from [this link](lab)
-
-# Refereces:
-[Avatar](https://iconscout.com/icons/avatar) by [Dmitriy Bondarchuk](https://iconscout.com/contributors/dmitriy-bondarchuk)
