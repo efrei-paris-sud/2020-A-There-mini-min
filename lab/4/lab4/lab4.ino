@@ -1,16 +1,15 @@
-#define BUILTIN_LED 21
-
-void setup() {
-  pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  Serial.begin(9600);
+const int led = 1;
+ 
+// the setup routine runs once when you press reset:
+void setup() {                
+  // initialize the digital pin as an output.
+  pinMode(led, OUTPUT);     
 }
-
-// the loop function runs over and over again forever
+ 
+// the loop routine runs over and over again forever:
 void loop() {
-  digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
-                                    // but actually the LED is on; this is because 
-                                    // it is acive low on the ESP-01)
-  delay(1000);                      // Wait for a second
-  digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
-  delay(1000);                      // Wait for two seconds (to demonstrate the active low LED)
+  digitalWrite(led, HIGH);      // turn the LED on (HIGH is the voltage level)
+  delay(1000);                  // wait for a second
+  digitalWrite(led, LOW);       // turn the LED off by making the voltage LOW
+  delay(1000);                  // wait for a second
 }
