@@ -1,12 +1,26 @@
-
-#include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Adafruit_SH1106.h>
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+Adafruit_SH1106 display(23); 
 
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-#define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+void setup()   {
+  display.begin();
+  display.setTextColor(WHITE);
+  display.setTextSize(2);
+}
+
+
+void loop() {
+  display.setCursor(0, 0);
+  display.clearDisplay();
+  display.println("THE");
+  display.display();
+
+  delay(1000);
+
+  display.clearDisplay();
+  display.println("Worldooooo");
+  display.display();
+  delay(1000);
+}

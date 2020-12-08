@@ -7,48 +7,34 @@ Now we want to use I2C LCD.
 > We can write a code to comunicate with the LCD with Bare I2C protocol. However it is time consuming. Therefore, We will use [Oled library](https://github.com/durydevelop/arduino-lib-oled/). 
 
 # STEP 1: Importing Library:
-Please follow [this link](https://learn.adafruit.com/adafruit-all-about-arduino-libraries-install-use/installing-a-library) and install [Oled library](https://github.com/durydevelop/arduino-lib-oled/)
+Please follow [this link](https://learn.adafruit.com/adafruit-all-about-arduino-libraries-install-use/installing-a-library) and install [Oled library](Adafruit_SH1106-master.zip)
 
 # STEP 2: 
-Connect the Oled Display using our last schematic: (please connect only Arduino and Oled and needed wires) 
+Connect the Oled Display using our last schematic: **(please connect only Arduino and Oled and needed wires) **
 
 ![schematic](https://github.com/efrei-paris-sud/2020-lab-two/blob/main/chapter4_no_mpu5060.png?raw=true).
 
 Is it okay? Let's go...
 
-# STEP 3: Print on screen
-You can easily print text on the screen in TTY mode by following codes.
+# STEP 3: REMOVED
 
-```Arduino
-#include <Arduino.h>
-#include <oled.h>
+|Ex.1|REMOVED
+---|---
+# STEP 3 new: FIND I2C devices
 
-OLED display=OLED(4,5);
-void setup(){
-    delay(1000);
-    display.begin();
-    display.setTTYMode(true); //To use display similar to a console.
-    display.printf("Hello\n");
-    display.printf("World %d!", 2020);
-}
-void loop(){
-}
-```
-
-|Ex.1|Write a program that writes something on the display every 1000 ms.
+|Ex.1| see [this link](https://playground.arduino.cc/Main/I2cScanner/) and find the connected I2C Devices
 ---|---
 
+
 # STEP 4: Display shapes and bitmaps
-|Ex.2| Upload [oledtest.ino](oledtest.ino?raw=true), see the result and describe shortly the functionality of following functions in home! ([HINT](https://github.com/durydevelop/arduino-lib-oled/blob/master/src/oled.h))
+|Ex.2| Please open Example by: File -> Examples -> adafruit SH1106->I2C, see the result and describe shortly the functionality of following functions in home! ([HINT](https://github.com/durydevelop/arduino-lib-oled/blob/master/src/oled.h))
 ---|---
 ```Arduino
     display.display();
-    display.scroll_up(32,20);
     display.draw_string(4,2,"Hello");
     display.draw_string(4,2,"Hello",OLED::DOUBLE_SIZE);
     display.draw_string_P(16,15,PSTR("World!"),OLED::DOUBLE_SIZE);
     display.draw_bitmap_P(0,0,128,64,bitmap);
-    display.set_scrolling(OLED::HORIZONTAL_RIGHT);
     display.set_invert(true);
     display.set_contrast(value);
 
