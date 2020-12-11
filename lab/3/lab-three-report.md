@@ -1,0 +1,102 @@
+|Ex.1| REMOVED : Show a blinking text
+---|---
+```Arduino
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH1106.h>
+
+Adafruit_SH1106 display(23); 
+
+void setup()   {
+  display.begin();
+  display.setTextColor(WHITE);
+  display.setTextSize(2);
+}
+
+
+void loop() {
+  display.setCursor(0, 0);
+  display.clearDisplay();
+  display.println("THE");
+  display.display();
+
+  delay(1000);
+
+  display.clearDisplay();
+  display.println("Worldooooo");
+  display.display();
+  delay(1000);
+}
+```
+
+|Ex.1| see [this link](https://playground.arduino.cc/Main/I2cScanner/) and find the connected I2C Devices
+---|---
+![schematic](i2c_scanner.png?raw=true).
+
+|Ex.2| Please open Example by: File -> Examples -> adafruit SH1106->I2C, see the result and describe shortly the functionality of following functions in home! ([HINT](https://github.com/durydevelop/arduino-lib-oled/blob/master/src/oled.h))
+---|---
+
+```Arduino
+    display.display(); //Displays the current display in memory
+    display.draw_string(4,2,"Hello"); //Draws "Hello" at position (4,2)
+    display.draw_string(4,2,"Hello",OLED::DOUBLE_SIZE); //Draws "Hello" at position (4,2) at a bigger size
+    display.draw_string_P(16,15,PSTR("World!"),OLED::DOUBLE_SIZE); //Draws "World!" at position (16,15) at a bigger size, and is stocked in the flash memory
+    display.draw_bitmap_P(0,0,128,64,bitmap); //Draws "bitmap" at position (0,0) and size (128, 64)
+    display.set_invert(true); //Inverts the color of the screen
+    display.set_contrast(value); //Changes the contrast of the screen with the value
+
+    display.draw_line(16,31,88,15); //Draws a (x0, y0, x1, y1) line
+    display.draw_pixel(127,0); //Draws a pixel at position (127, 0)
+    display.draw_circle(36,16,14,OLED::SOLID); //Draws a circle at center (36, 16) with radius 14 and filled
+    display.draw_rectangle(64,0,98,31); //Draws a rectangle at (x0, y0, x1, y1)
+```
+
+|Ex.3| Display your team name on the Oled with big font and add a random logo (Search for a `single color logo` or build you own logo and display it in the screen.)
+---|---
+```Arduino
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH1106.h>
+
+Adafruit_SH1106 display(23); 
+
+const unsigned char myBitmap [] PROGMEM = {
+  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
+  0xc0, 0xe1, 0xff, 0xff, 0xff, 0xc0, 0x80, 0x7f, 0xff, 0xff, 0xc0, 0x00, 0x1f, 0xff, 0xff, 0xc0, 
+  0x00, 0x07, 0xff, 0xff, 0xc0, 0x00, 0x01, 0xff, 0xff, 0x80, 0x00, 0x00, 0x7f, 0xfe, 0x00, 0x00, 
+  0x00, 0x1f, 0xf8, 0x00, 0x0f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x1c, 0x00, 
+  0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 
+  0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1f, 0xf0, 0x7f, 0xff, 0x00, 0x1f, 0xf0, 0x7f, 0xff, 
+  0x00, 0x18, 0x30, 0x7f, 0xff, 0x00, 0x18, 0x30, 0x7f, 0xff, 0x00, 0x18, 0x30, 0x7f, 0xff, 0x00, 
+  0x18, 0x30, 0x7f, 0xff, 0x00, 0x18, 0x3f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
+  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 
+  0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 
+  0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 
+  0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0x00, 0x1c, 0x00, 0x7f, 0xff, 0xff, 
+  0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
+};
+
+
+void setup()   {
+
+  display.begin();  // initialisation de l'afficheur
+  display.clearDisplay();   // ça efface à la fois le buffer et l'écran
+}
+
+
+void loop() {
+  display.drawBitmap(0, 0, myBitmap, 40, 40, WHITE);
+
+  display.setCursor(60, 30);  // coordonnées du point de départ du texte
+  display.setTextColor(WHITE);
+  display.setTextSize(2);  // taille par défaut
+  display.println("Thereminimin");
+
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+}
+```
+
+![schematic](thereminimin_sample.png?raw=true).
