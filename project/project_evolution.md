@@ -60,3 +60,10 @@ The schema prototype
 The breadboard prototype
 ![BB prototype](img/Prototype_bb.png?raw=true)
 
+# Test the bluetooth
+## Basic testing
+
+We connected the ESP32S to an android bluetooth and tried to send and receive message through the application Serial Bluetooth Terminal.
+
+![Phone side](img/esp32phone.png?raw=true) 
+![Computer side](img/esp32pc.png?raw=true)
