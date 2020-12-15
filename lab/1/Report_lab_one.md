@@ -8,7 +8,7 @@ If we connect the red cable to the VCC, the LED keeps on.
 
 We just need to change the LED to 4 instead of 6
 
-![Image one](IMG_3330.jpg?raw=true)
+![Image one](img/IMG_3330.jpg?raw=true)
 
 |Ex.3| Is it work? Please don't forget to document it with [this format](https://github.com/efrei-paris-sud/2019-sample-project/tree/master/lab/1). |
 |--|--|

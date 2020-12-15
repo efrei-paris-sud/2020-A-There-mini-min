@@ -17,3 +17,46 @@ After testing it in real life, we found out that the measures were correct.
 ![Image test](img/IMG_3523.PNG?raw=true)
 ![Cover GIF](img/screen_firsttest.png?raw=true)
 
+## Testing two HC-SR04
+Since a Theremin works with two inputs (volume and frequency), we borrowed a second ultrasound sensor to our classmates.
+Now, we want to use two of these and see how they behave together. They work fine together.
+
+![Image test](img/2020-12-1509.56.01.jpeg?raw=true)
+![Cover GIF](img/screen_secondtest.png?raw=true)
+
+Here is the code for this second test: 
+
+```Arduino
+#include <HCSR04.h>
+
+UltraSonicDistanceSensor distanceSensor(4, 5);
+UltraSonicDistanceSensor distanceSensor2(2, 3);
+
+
+void setup () {
+    Serial.begin(9600);  // We initialize serial connection so that we could print values from sensor.
+}
+
+void loop () {
+    // Every 500 miliseconds, do a measurement using the sensor and print the distance in centimeters.
+    Serial.println("SR_01: " + String(distanceSensor.measureDistanceCm(), 6));
+    Serial.println("SR_02: " + String(distanceSensor2.measureDistanceCm(), 6));
+    delay(500);
+}
+```
+
+## Testing the output
+
+we tried to make the RGB LED vary with the ultrasound sensors, however we couldn't appreciate well the results.
+
+![RGB LED Test](img/2020-12-1510.58.51.jpeg?raw=true)
+
+# Design the prototype
+
+We used Fritzing in order to vizualize the design of our module
+
+The schema prototype
+![Schema prototype](img/Prototype_schema.png?raw=true)
+The breadboard prototype
+![BB prototype](img/Prototype_bb.png?raw=true)
+
