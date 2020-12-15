@@ -67,3 +67,10 @@ We connected the ESP32S to an android bluetooth and tried to send and receive me
 
 ![Phone side](img/esp32phone.png?raw=true) 
 ![Computer side](img/esp32pc.png?raw=true)
+
+We then coded a way to control our system through the app with a simple on/off option for a led.
+![Led testing](img/esp32led.png?raw=true)
+
+
+# Remerciement
+Remerciement spécial à pour leur contribution matériel à notre projet
