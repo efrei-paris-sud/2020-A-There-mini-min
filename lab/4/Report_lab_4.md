@@ -23,9 +23,12 @@ void loop() {
 
 |Ex.2| Remember Lab 3, Upload the code of Ex.3 there. build the circut and see if it works.
 |--|--|
+![image two](ressources/image_two.jpg?raw=true)
+
+It didn't work.
 
 
-|Ex.2| Build circuit of [Step 6 in Lab1](https://github.com/efrei-paris-sud/2020-lab-one#step-6-read-an-analog-value). Send its data to thingspeak dashboard! Take a photo of the dashboard
+|Ex.3| Build circuit of [Step 6 in Lab1](https://github.com/efrei-paris-sud/2020-lab-one#step-6-read-an-analog-value). Send its data to thingspeak dashboard! Take a photo of the dashboard
 |--|--|
 ![image three](ressources/image_three.jpg?raw=true)
 
