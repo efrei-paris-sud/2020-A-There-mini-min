@@ -63,13 +63,17 @@ The breadboard prototype
 # Test the bluetooth
 ## Basic testing
 
-We connected the ESP32S to an android bluetooth and tried to send and receive message through the application Serial Bluetooth Terminal.
+We connected the ESP32S to an android bluetooth (classic protocol) and tried to send and receive message through the application Serial Bluetooth Terminal.
 
 ![Phone side](img/esp32phone.png?raw=true) 
 ![Computer side](img/esp32pc.png?raw=true)
 
 We then coded a way to control our system through the app with a simple on/off option for a led.
 ![Led testing](img/esp32led.png?raw=true)
+
+From then we needed to find a way to control our device from the esp32, we found the library Ble Keyboard who allow us to input keys in our device. It worked on computer but didn't on smartphone. We could abandon the idea of using our smartphone and using our computer instead, seen as once we have control over keys input we can do pretty much everything in a computer.
+(As we can see, the library convert character to their mapped key, since it's of english origin it uses the qwerty format and not the azerty one, thus when we write "w" it read the corresponding key emplacement wich is a "z" on a qwerty keyboard)
+![Led testing](img/blekeyboard.png?raw=true)
 
 
 # Remerciement

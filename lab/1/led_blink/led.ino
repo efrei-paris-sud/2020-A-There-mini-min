@@ -1,4 +1,4 @@
-#define BUILTIN_LED 21
+#define BUILTIN_LED 1
 
 void setup() {
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output

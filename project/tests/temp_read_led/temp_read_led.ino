@@ -1,11 +1,12 @@
 /*********
   Rui Santos
-  Complete project details at http://randomnerdtutorials.com
+  Complete project details at https://randomnerdtutorials.com
 *********/
 
 // Load libraries
 #include "BluetoothSerial.h"
 #include <OneWire.h>
+#include <DallasTemperature.h>
 
 // Check if Bluetooth configs are enabled
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
@@ -22,11 +23,17 @@ const int ledPin =  25;
 const int oneWireBus = 32;          
 // Setup a oneWire instance to communicate with any OneWire devices
 OneWire oneWire(oneWireBus);
+// Pass our oneWire reference to Dallas Temperature sensor 
+DallasTemperature sensors(&oneWire);
 
 // Handle received and sent messages
 String message = "";
 char incomingChar;
 String temperatureString = "";
+
+// Timer: auxiliar variables
+unsigned long previousMillis = 0;    // Stores last time temperature was published
+const long interval = 10000;         // interval at which to publish sensor readings
 
 void setup() {
   pinMode(ledPin, OUTPUT);
@@ -37,7 +44,14 @@ void setup() {
 }
 
 void loop() {
- 
+  unsigned long currentMillis = millis();
+  // Send temperature readings
+  if (currentMillis - previousMillis >= interval){
+    previousMillis = currentMillis;
+    sensors.requestTemperatures(); 
+    temperatureString = String(sensors.getTempCByIndex(0)) + "C  " +  String(sensors.getTempFByIndex(0)) + "F";
+    SerialBT.println(temperatureString); 
+  }
   // Read received messages (LED control command)
   if (SerialBT.available()){
     char incomingChar = SerialBT.read();
@@ -51,11 +65,9 @@ void loop() {
   }
   // Check received message and control output accordingly
   if (message =="led_on"){
-    Serial.println("\n on");
     digitalWrite(ledPin, HIGH);
   }
   else if (message =="led_off"){
-    Serial.println("\n off");
     digitalWrite(ledPin, LOW);
   }
   delay(20);
