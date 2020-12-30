@@ -17,6 +17,11 @@ After testing it in real life, we found out that the measures were correct.
 ![Image test](img/IMG_3523.PNG?raw=true)
 ![Cover GIF](img/screen_firsttest.png?raw=true)
 
+We redid it with the ESON Board
+![Image test](img/wifi_distance.PNG?raw=true)
+![Image test](img/wifi_distance_pic.PNG?raw=true)
+
+
 ## Testing two HC-SR04
 Since a Theremin works with two inputs (volume and frequency), we borrowed a second ultrasound sensor to our classmates.
 Now, we want to use two of these and see how they behave together. They work fine together.
@@ -76,5 +81,8 @@ From then we needed to find a way to control our device from the esp32, we found
 ![Led testing](img/blekeyboard.png?raw=true)
 
 
+# DES MATH
+
+
 # Remerciement
-Remerciement spécial à pour leur contribution matériel à notre projet
+Remerciement spécial à Nice for What pour leur contribution matérielle et morale à notre projet
