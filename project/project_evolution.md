@@ -81,7 +81,14 @@ From then we needed to find a way to control our device from the esp32, we found
 ![Led testing](img/blekeyboard.png?raw=true)
 
 
-# DES MATH
+# Creating the prototype
+
+## Dividing the notes
+As it has been proven to not be viable to have a continuous (and not discrete) range of values for both the volume and the frequency, we decided to divide our theremin's notes between **an octave** of values.
+
+We decided, for the ease of movement of the musician and for them to not touch the Thereminimin™, to have a range of values between 5cm and 45cm between the hand of the musician and the instrument. Therefore, each octave will be spaced by a distance of 5cm. 
+
+To achieve that, we did quick maths, for an integer value that would be sent to the Android™ via Bluetooth, which would be 
 
 
 # Remerciement
