@@ -4,9 +4,12 @@
 #include <BLE2902.h>
 #include <HCSR04.h>
 
-#define SERVICE_UUID           "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" //UART service UUID
-#define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E" //Sender
-#define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E" //Receiver
+//#define SERVICE_UUID           "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" //UART service UUID
+//#define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E" //Receiver
+//#define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E" //Sender
+
+#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 
 BLECharacteristic *pCharacteristic;
 bool deviceConnected = false;
@@ -15,6 +18,11 @@ int volume = 0;
 float currFreq = 0;
 int frequency = 0;
 const int readPin = 32; // Use GPIO number. See ESP32 board pinouts
+
+//debug
+uint32_t value = 0;
+bool oldDeviceConnected = false;
+BLEServer* pServer = NULL;
 
 //The two ultrasound sensors
 UltraSonicDistanceSensor distanceSensorVolume(34, 35); //(Trig, Echo)
@@ -28,27 +36,6 @@ class MyServerCallbacks: public BLEServerCallbacks {
     void onDisconnect(BLEServer* pServer) {
       deviceConnected = false;
     }
-};
-
-class MyCallbacks : public BLECharacteristicCallbacks
-{
-  void onWrite(BLECharacteristic *pCharacteristic)
-  {
-    std::string rxValue = pCharacteristic->getValue();
-
-    if (rxValue.length() > 0)
-    {
-    
-      Serial.println("*********");
-      Serial.print("Received Value: ");
-      for (int i = 0; i < rxValue.length(); i++)
-      {
-        Serial.print(rxValue[i]);
-      }
-      Serial.println();
-      Serial.println("*********");
-    }
-  }
 };
 
 int convertFreq(float currFreq) {
@@ -78,7 +65,7 @@ void setup() {
   BLEDevice::init("ESP32 UART testing");
 
   //BLE Server
-  BLEServer *pServer = BLEDevice::createServer();
+  pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
 
   //BLE Service
@@ -86,26 +73,50 @@ void setup() {
 
   //BLE Characteristic
   pCharacteristic = pService->createCharacteristic(
-      CHARACTERISTIC_UUID_TX,
-      BLECharacteristic::PROPERTY_NOTIFY);
+                      CHARACTERISTIC_UUID,
+                      BLECharacteristic::PROPERTY_READ   |
+                      BLECharacteristic::PROPERTY_WRITE  |
+                      BLECharacteristic::PROPERTY_NOTIFY |
+                      BLECharacteristic::PROPERTY_INDICATE
+                    );
 
   pCharacteristic->addDescriptor(new BLE2902());
-
-  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
-      CHARACTERISTIC_UUID_RX,
-      BLECharacteristic::PROPERTY_WRITE);
-
-  pCharacteristic->setCallbacks(new MyCallbacks());
 
   // Start the service
   pService->start();
 
   // Start advertising
-  pServer->getAdvertising()->start();
+  BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
+  pAdvertising->addServiceUUID(SERVICE_UUID);
+  pAdvertising->setScanResponse(false);
+  pAdvertising->setMinPreferred(0x0);  // set value to 0x00 to not advertise this parameter
+  BLEDevice::startAdvertising();
   Serial.println("Waiting a client connection to notify...");
 }
 
 void loop() {
+
+  // notify changed value
+    if (deviceConnected) {
+        pCharacteristic->setValue((uint8_t*)&value, 4);
+        pCharacteristic->notify();
+        value++;
+        delay(10); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+    }
+
+    // disconnecting
+    if (!deviceConnected && oldDeviceConnected) {
+        delay(500); // give the bluetooth stack the chance to get things ready
+        pServer->startAdvertising(); // restart advertising
+        Serial.println("start advertising");
+        oldDeviceConnected = deviceConnected;
+    }
+    // connecting
+    if (deviceConnected && !oldDeviceConnected) {
+        // do stuff here on connecting
+        oldDeviceConnected = deviceConnected;
+    }
+   /* 
   currVol = distanceSensorVolume.measureDistanceCm() - 5;
   currFreq = distanceSensorFrequency.measureDistanceCm() - 5;
 
@@ -124,10 +135,10 @@ void loop() {
   if(deviceConnected) {
     char txVolume[3];
     itoa(volume, txVolume, 10);
-    pCharacteristic->setValue(txVolume);
+    pCharacteristic->setValue("cc");
     pCharacteristic->notify();
-    Serial.println("Value sent : " + txVolume);
+    Serial.println("Value sent : " + "cc");
   }
   
-  delay(1000);
+  delay(1000);*/
 }
