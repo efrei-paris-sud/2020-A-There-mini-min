@@ -4,6 +4,7 @@
 #include <BLE2902.h>
 #include <HCSR04.h>
 
+
 //#define SERVICE_UUID           "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" //UART service UUID
 //#define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E" //Receiver
 //#define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E" //Sender
@@ -20,7 +21,7 @@ int frequency = 0;
 const int readPin = 32; // Use GPIO number. See ESP32 board pinouts
 
 //debug
-uint32_t value = 0;
+int value = 0;
 bool oldDeviceConnected = false;
 BLEServer* pServer = NULL;
 
@@ -98,10 +99,11 @@ void loop() {
 
   // notify changed value
     if (deviceConnected) {
-        pCharacteristic->setValue((uint8_t*)&value, 4);
+        pCharacteristic->setValue(value);
+        Serial.println(value);
         pCharacteristic->notify();
         value++;
-        delay(10); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+        delay(1000); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
     }
 
     // disconnecting
