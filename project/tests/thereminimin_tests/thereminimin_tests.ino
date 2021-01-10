@@ -93,10 +93,14 @@ void setup() {
   pAdvertising->setMinPreferred(0x0);  // set value to 0x00 to not advertise this parameter
   BLEDevice::startAdvertising();
   Serial.println("Waiting a client connection to notify...");
+
+  //Do it with the buzzer
+  ledcSetup(0, 2000, 8); //Channel, Freq, Resolution
+  ledcAttachPin(25, 0); //Pin, Channel
 }
 
 void loop() {
-
+ /*
   // notify changed value
     if (deviceConnected) {
         pCharacteristic->setValue(value);
@@ -117,8 +121,8 @@ void loop() {
     if (deviceConnected && !oldDeviceConnected) {
         // do stuff here on connecting
         oldDeviceConnected = deviceConnected;
-    }
-   /* 
+    }*/
+   
   currVol = distanceSensorVolume.measureDistanceCm() - 5;
   currFreq = distanceSensorFrequency.measureDistanceCm() - 5;
 
@@ -132,15 +136,18 @@ void loop() {
   (currFreq > 40) ? 40 : currFreq;
 
   //Convert the frequency to its octave
-  frequency = convertFreq(currFreq);
+  frequency = convertFreq(currFreq*1000);
+  Serial.println(currFreq*1000);
+
+  //For the buzzer
+  ledcWriteTone(0, currFreq);
     
   if(deviceConnected) {
     char txVolume[3];
     itoa(volume, txVolume, 10);
     pCharacteristic->setValue("cc");
     pCharacteristic->notify();
-    Serial.println("Value sent : " + "cc");
+    Serial.println("Value sent : cc");
   }
   
-  delay(1000);*/
 }
