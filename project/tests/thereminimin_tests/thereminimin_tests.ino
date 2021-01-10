@@ -135,9 +135,8 @@ void loop() {
   (volume > 100) ? 100 : volume;
   (currFreq > 40) ? 40 : currFreq;
 
-  //Convert the frequency to its octave
-  frequency = convertFreq(currFreq*1000);
-  Serial.println(currFreq*1000);
+  frequency = (int) currFreq*100;
+  Serial.println(frequency);
 
   //For the buzzer
   ledcWriteTone(0, currFreq);
