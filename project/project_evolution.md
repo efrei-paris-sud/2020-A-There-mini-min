@@ -95,7 +95,7 @@ EXPLAINATION
 This proved a challenge, for the application we were using for Bluetooth wasn't supporting it's low energy varient. We went back to research and found a code enabling us to create a server able to connect in low energy: 
 ![BLE server's code](img/BLE_server_code.png?raw=true)
 
-At first, using the kodable application (details in the following session) we didn't got any result.
+At first, using the Kodular application (details in the following session) we didn't got any result.
 ![Kodular doesn't show anything](img/kodular_error_1.png?raw=true)
 
 Apparently the application wasn't able to detect our device by itself. We had to resort to using another application to make a "first contact" between the ESP32 and the
@@ -121,6 +121,26 @@ We decided to go with MIT App Inventor after about 40 hours of work.
 There is several tutorials available online. [Arduinofanboy's tutorial](https://www.instructables.com/ESP32-BLE-Android-App-Arduino-IDE-AWESOME/) was one of them that we tried to follow. It uses the older version of Thunkable, so we tried to implement his template to Kodular. We did changes to make the app read the values sent by the ESP32, since his work is about sending data to the ESP32.
 
 ![Kodular code](img/kodular_code.png?raw=true)
+
+However, a lot of errors and issues happened
+
+#### No extension can modulate the frequency
+
+Currently, there is no extension available for the MIT App Inventor project that can [modulate the frequency](https://puravidaapps.com/extensions.php) : only the volume can be changed from 1 to 100 with the Taifun player. The approach we tried, therefore, was to create multiple (10) sounds at different frequencies that could be played according to the distance between the Thereminimin and the hand.
+
+#### The Bluetooth extension doesn't work properly
+
+An issue that happened multiple times was that the Bluetooth Low Energy extension doesn't work with the outdated extension available on the platforms (Kodular & MIT App Inventor). Thus, we had to update it manually. We tried to update this extension on Kodular, however the same errors kept happening, as the app couldn't find the BLE local devices. That is mainly why we switched to MIT App Inventor.
+
+#### The app couldn't connect to the module
+
+We currently do not know why, but the application, even though it is supposed to work properly, sometimes doesn't want to connect to the ESP32. Some people suggested to download a side app, named nRF Connect, connect it to the module and it would be supposed to work after disconnecting it and connecting it again to the homemade app. This solution works only sometimes, but is currently the only way we can connect our ESP32 to the Android Phone.
+
+#### The app doesn't receive the data
+
+This is the part that we are currently stuck on, as the app won't receive the data that the ESP32 is supposed to notify (which is supposed to be the Volume value calculated from the distance of the hand and the Thereminimin). This approach still isn't fixed, even though we tried all options available on the MIT App Inventor.
+
+![The data won't send to the Android](img/data_not_sent.png?raw=true)
 
 # Remerciement
 Remerciement spécial à *Nice for What* pour leur contribution matérielle et morale à notre projet
