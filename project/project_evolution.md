@@ -61,8 +61,11 @@ we tried to make the RGB LED vary with the ultrasound sensors, however we couldn
 We used Fritzing in order to vizualize the design of our module
 
 The schema prototype
+
 ![Schema prototype](img/Prototype_schema.png?raw=true)
+
 The breadboard prototype
+
 ![BB prototype](img/Prototype_bb.png?raw=true)
 
 # Test the bluetooth
@@ -74,10 +77,12 @@ We connected the ESP32S to an android bluetooth (classic protocol) and tried to 
 ![Computer side](img/esp32pc.png?raw=true)
 
 We then coded a way to control our system through the app with a simple on/off option for a led.
+
 ![Led testing](img/esp32led.png?raw=true)
 
 From then we needed to find a way to control our device from the esp32, we found the library Ble Keyboard who allow us to input keys in our device. It worked on computer but didn't on smartphone. We could abandon the idea of using our smartphone and using our computer instead, seen as once we have control over keys input we can do pretty much everything in a computer.
 (As we can see, the library convert character to their mapped key, since it's of english origin it uses the qwerty format and not the azerty one, thus when we write "w" it read the corresponding key emplacement wich is a "z" on a qwerty keyboard)
+
 ![Led testing](img/blekeyboard.png?raw=true)
 
 
@@ -88,19 +93,24 @@ As it has been proven to not be viable to have a continuous (and not discrete) r
 
 We decided, for the ease of movement of the musician and for them to not touch the Thereminimin™, to have a range of values between 5cm and 45cm between the hand of the musician and the instrument. Therefore, each octave will be spaced by a distance of 5cm. 
 
+*this feature was later removed using the buzzer as we were able to use continious values.
+
 ## The code
 We had been able to connect the ESP32 to an android phone through bluetooth, but now we had to be able to send continuous data (the distance between the hand and the captor), thus we had to use low energy bluetooth.
 EXPLAINATION
 
 This proved a challenge, for the application we were using for Bluetooth wasn't supporting it's low energy varient. We went back to research and found a code enabling us to create a server able to connect in low energy: 
+
 ![BLE server's code](img/BLE_server_code.png?raw=true)
 
 At first, using the Kodular application (details in the following session) we didn't got any result.
+
 ![Kodular doesn't show anything](img/kodular_error_1.png?raw=true)
 
 Apparently the application wasn't able to detect our device by itself. We had to resort to using another application to make a "first contact" between the ESP32 and the
-android: nRF connect.
+android: Through a process called heterodyning, signals from the fixed and variable oscillators were mixed together. The frequency of one oscillator was subtracted from the other. The difference was amplified and, finally, output as an audible musical tone.
 Once the contact was established, kodular was able to perceive multiple devices.
+
 ![Kodular finding adresses](img/kodular_IP.png?raw=true)
 
 
@@ -142,5 +152,11 @@ This is the part that we are currently stuck on, as the app won't receive the da
 
 ![The data won't send to the Android](img/data_not_sent.png?raw=true)
 
-# Remerciement
-Remerciement spécial à *Nice for What* pour leur contribution matérielle et morale à notre projet
+#The buzzer alternative
+As we were running out of time and hadn't a sound producing system to present we decided to use a buzzer to at least show the viability of our project.
+However the function related to the buzzer can only take one input at a time, thus we cannot control both the frequency and the volume without an additional element such as a potentiometer whith who we could have controlled the flow of current send to the buzzer through the on/off ratio of the period.
+
+![Buzzer's code](img/buzzer.png?raw=true)
+
+# Thanks
+Special thanks to *Nice for What* their material support to our project.
