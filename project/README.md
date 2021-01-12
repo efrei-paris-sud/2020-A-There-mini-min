@@ -1,6 +1,9 @@
 # Project Title: Thereminimin
  **Description**: Our project is about making a Theremin, an electrical music instrument that crosses all frequencies (like a violin). It uses a proximity sensor as it is controlled by distance.
 
+# Activity diagram for the project
+For this project, we wanted the program to be as user-friendly as possible. Though it needed connection with the phone, the rest is pretty simple for any user to follow.
+![Activity diagram](img/Activity_diagram.png?raw=true)
 # First tests for the project
 Before doing the project itself, we did some tests that will be related in this document.
 
@@ -152,11 +155,11 @@ This is the part that we are currently stuck on, as the app won't receive the da
 
 ![The data won't send to the Android](img/data_not_sent.png?raw=true)
 
-#The buzzer alternative
+# The buzzer alternative
 As we were running out of time and hadn't a sound producing system to present we decided to use a buzzer to at least show the viability of our project.
 However the function related to the buzzer can only take one input at a time, thus we cannot control both the frequency and the volume without an additional element such as a potentiometer whith who we could have controlled the flow of current send to the buzzer through the on/off ratio of the period.
 
 ![Buzzer's code](img/buzzer.png?raw=true)
 
 # Thanks
-Special thanks to *Nice for What* their material support to our project.
+Special thanks to [*Nice for What*](https://github.com/efrei-paris-sud/2020-E-Nice-For-What) their material support to our project.
