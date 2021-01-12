@@ -130,7 +130,7 @@ As we don't have much background knowledge in Kotlin or Java for Android develop
 
 We decided to go with MIT App Inventor after about 40 hours of work.
 
-### Following online tutorials
+### Making the application to exchange bluetooth data
 There is several tutorials available online. [Arduinofanboy's tutorial](https://www.instructables.com/ESP32-BLE-Android-App-Arduino-IDE-AWESOME/) was one of them that we tried to follow. It uses the older version of Thunkable, so we tried to implement his template to Kodular. We did changes to make the app read the values sent by the ESP32, since his work is about sending data to the ESP32.
 
 ![Kodular code](img/kodular_code.png?raw=true)
