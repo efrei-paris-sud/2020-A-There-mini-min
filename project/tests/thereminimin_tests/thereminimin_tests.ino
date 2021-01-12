@@ -100,7 +100,7 @@ void setup() {
 }
 
 void loop() {
- /*
+ 
   // notify changed value
     if (deviceConnected) {
         pCharacteristic->setValue(value);
@@ -121,7 +121,7 @@ void loop() {
     if (deviceConnected && !oldDeviceConnected) {
         // do stuff here on connecting
         oldDeviceConnected = deviceConnected;
-    }*/
+    }
    
   currVol = distanceSensorVolume.measureDistanceCm() - 5;
   currFreq = distanceSensorFrequency.measureDistanceCm() - 5;

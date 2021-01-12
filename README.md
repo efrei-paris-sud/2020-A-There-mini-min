@@ -14,7 +14,7 @@ Members:
 
 Video of the project :
 
-[![Video of the project](https://img.youtube.com/vi/OTfalurMwmk/0.jpg)](www.youtube.com/watch?v=OTfalurMwmk)
+[![Video of the project](https://img.youtube.com/vi/fkC79uL6lcE/0.jpg)](https://youtu.be/fkC79uL6lcE)
 
 # Lab Reports
 
